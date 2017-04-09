@@ -14,6 +14,7 @@ public class Renderer {
     private Object obj;
 
 	/**
+	 * Create new Renderer for specified object.
 	 * @param obj Object to render fields from
 	 */
 	public Renderer(Object obj) {
@@ -22,9 +23,9 @@ public class Renderer {
 
 	/**
 	 * @return String representation of annotated fields
-	 * @throws ClassNotFoundException
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
+	 * @throws ClassNotFoundException 
+	 * @throws IllegalArgumentException 
+	 * @throws IllegalAccessException 
 	 */
 	public String render() throws ClassNotFoundException, IllegalArgumentException, IllegalAccessException {
 		Class< ? > c = obj.getClass();
@@ -55,11 +56,11 @@ public class Renderer {
 		}
 		
 		//Invoke annotated methods
-		for (Method m : methods){
+		for (Method m : methods) {
 			m.setAccessible(true);
 			if (m.getDeclaredAnnotation(RenderMe.class) instanceof RenderMe) {
 				try {
-					output += m.getName() + " returns: " + m.invoke(c) +"\n";
+					output += m.getName() + " returns: " + m.invoke(c) + "\n";
 				} catch (InvocationTargetException e) {
 					e.printStackTrace();
 				}

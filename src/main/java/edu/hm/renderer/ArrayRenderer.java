@@ -5,7 +5,6 @@ package edu.hm.renderer;
  *
  */
 public class ArrayRenderer {
-
 	/**
 	 * @param arr Array of objects
 	 * @return String representation of the Array
@@ -17,5 +16,4 @@ public class ArrayRenderer {
 		}
 		return output + "]";
 	}
-
 }
