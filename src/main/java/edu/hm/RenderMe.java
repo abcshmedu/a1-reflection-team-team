@@ -7,7 +7,7 @@ import java.lang.annotation.*;
  *
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.FIELD })
+@Target({ ElementType.FIELD, ElementType.METHOD })
 
 public @interface RenderMe {
 	String with() default "edu.hm.Renderer";

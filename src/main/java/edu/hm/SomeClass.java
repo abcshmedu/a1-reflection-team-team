@@ -13,4 +13,14 @@ public class SomeClass {
 	public SomeClass(int foo) {
 		this.foo = foo;
 	}
+	
+	@RenderMe
+	public static String someMethod() {
+		return "Hello World.";
+	}
+	
+	@RenderMe
+	public static int answer() {
+		return 42;
+	}
 }

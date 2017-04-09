@@ -29,8 +29,10 @@ public class Renderer {
 	public String render() throws ClassNotFoundException, IllegalArgumentException, IllegalAccessException {
 		Class< ? > c = obj.getClass();
 		Field[] fields = c.getDeclaredFields();
+		Method[] methods = c.getDeclaredMethods();
 		String output = "Instance of " + c.getName() + ":\n";
 
+		//Render annotated fields
 		for (Field f : fields) {
 			f.setAccessible(true);
 			if (f.getDeclaredAnnotation(RenderMe.class) instanceof RenderMe) {
@@ -51,6 +53,19 @@ public class Renderer {
 				}
 			}
 		}
+		
+		//Invoke annotated methods
+		for (Method m : methods){
+			m.setAccessible(true);
+			if (m.getDeclaredAnnotation(RenderMe.class) instanceof RenderMe) {
+				try {
+					output += m.getName() + " returns: " + m.invoke(c) +"\n";
+				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		return output;
 	}
 	
